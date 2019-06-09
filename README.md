@@ -1,9 +1,5 @@
 # docker
 
-## Tags
-latest = Ubuntu based image (default) \
-latest-centos = Centos based image
-
 ## Installed in this image
 
 - Azure CLI 2.0.66
