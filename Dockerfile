@@ -2,10 +2,6 @@ FROM ubuntu
 
 LABEL Name="bourgeoisrebel/azadmin"
 
-RUN ls -al
-RUN mkdir /etc/ssl/certs/ 
-RUN cp .gitignore zscaler.pem /etc/ssl/certs/
-
 RUN cd /tmp && \
     apt update && \
     apt-get install -y wget unzip curl lsb-release gnupg python3-pip python3-minimal
