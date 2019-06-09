@@ -1,8 +1,6 @@
 FROM centos:latest
 LABEL Name="cloudpea/pdu-operations"
 RUN ls -al
-COPY ./cert/cert.pem /etc/pki/ca-trust/source/anchors
-RUN update-ca-trust force-enable && update-ca-trust extract
 
 RUN yum -y install \
         epel-release \
