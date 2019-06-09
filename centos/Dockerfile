@@ -1,7 +1,7 @@
 FROM centos:latest
 LABEL Name="cloudpea/pdu-operations"
-
-COPY /cert/cert.pem /etc/pki/ca-trust/source/anchors
+RUN ls -al
+COPY ./cert/cert.pem /etc/pki/ca-trust/source/anchors
 RUN update-ca-trust force-enable && update-ca-trust extract
 
 RUN yum -y install \
