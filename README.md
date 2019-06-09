@@ -1,7 +1,7 @@
 # docker
 
 ## Tags
-Latest = Ubuntu based image (the default)
+latest = Ubuntu based image (default) \
 latest-centos = Centos based image
 
 ## Installed in this image
