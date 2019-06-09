@@ -15,7 +15,7 @@ To pull latest version of the image:
 
 ``` docker pull bourgeoisrebel/azadmin ```
 
-## To run iteratively:
+## To run interactively:
 
 CLI:
 
