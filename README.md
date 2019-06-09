@@ -25,3 +25,4 @@ Powershell:
 
 ``` docker run -it -v $PWD:/git bourgeoisrebel/azadmin pwsh ```
 
+**See https://github.com/bourgeoisrebel/docker for centos version**
