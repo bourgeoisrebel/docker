@@ -4,7 +4,7 @@
 
 - Azure CLI 2.0.66
 - Terraform 0.11.14
-- Az Powershell Module 2.2.0
+- Az Powershell Module 2.2.0 
 
 ## Build
 To build from docker file, navigate to directory containing docker file then:
