@@ -17,7 +17,7 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
     az extension add --name azure-devops
     
 RUN wget https://releases.hashicorp.com/terraform/0.11.14/terraform_0.11.14_linux_amd64.zip --no-check-certificate && \
-    unzip ./terraform_0.11.14_linux_amd64.zip -d /usr/local/bin/
+    unzip ./terraform_0.12.10_linux_amd64.zip -d /usr/local/bin/
 
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb --no-check-certificate && \
     dpkg -i packages-microsoft-prod.deb && \
