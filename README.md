@@ -3,7 +3,7 @@
 ## Installed in this image
 
 - Azure CLI 2.0.66
-- Terraform 0.11.14
+- Terraform 0.12.12
 - Az Powershell Module 2.2.0 
 
 ## Build
