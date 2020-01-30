@@ -24,5 +24,18 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
     apt update && \
     apt install -y powershell && \
     pwsh -Command "Install-Module -Name Az -AllowClobber -Force"
+    
+RUN apt-get update && \
+    apt-get install -y apt-transport-https \
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list \
+    apt-get update \
+    apt-get install -y kubectl
+    
+RUN curl -LO https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz
+    tar zxvf ./helm-v2.14.2-linux-amd64.tar.gz
+    mv linux-amd64/helm . && chmod +x ./helm
+    rm -rf ./helm-v2.14.2-linux-amd64.tar.gz
+    rm -rf ./linux-amd64
 
 CMD [ "bash" ]
