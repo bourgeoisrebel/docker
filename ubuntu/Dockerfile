@@ -25,17 +25,22 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
     apt install -y powershell && \
     pwsh -Command "Install-Module -Name Az -AllowClobber -Force"
     
-RUN apt-get update && \
-    apt-get install -y apt-transport-https \
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
-    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list \
-    apt-get update \
+# Install helm/tiller
+RUN HELM_VERSION=v2.16.1 && \
+    wget https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz --no-check-certificate && \
+    helm_sha256=7eebaaa2da4734242bbcdced62cc32ba8c7164a18792c8acdf16c77abffce202 && \
+    echo "$helm_sha256 helm-${HELM_VERSION}-linux-amd64.tar.gz" | sha256sum -c - && \
+    tar xzvf helm-${HELM_VERSION}-linux-amd64.tar.gz && \
+    mv linux-amd64/helm /usr/local/bin && mv linux-amd64/tiller /usr/local/bin && \
+    rm -rf linux-amd64 helm-${HELM_VERSION}-linux-amd64.tar.gz && \
+    helm init --client-only
+
+# Install kubectl
+RUN apt-get update && apt-get install -y apt-transport-https && \
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list && \
+    apt-get update && \
     apt-get install -y kubectl
     
-RUN curl -LO https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz \
-    tar zxvf ./helm-v2.14.2-linux-amd64.tar.gz \
-    mv linux-amd64/helm . && chmod +x ./helm \
-    rm -rf ./helm-v2.14.2-linux-amd64.tar.gz \
-    rm -rf ./linux-amd64
 
 CMD [ "bash" ]
