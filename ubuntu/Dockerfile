@@ -32,10 +32,10 @@ RUN apt-get update && \
     apt-get update \
     apt-get install -y kubectl
     
-RUN curl -LO https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz
-    tar zxvf ./helm-v2.14.2-linux-amd64.tar.gz
-    mv linux-amd64/helm . && chmod +x ./helm
-    rm -rf ./helm-v2.14.2-linux-amd64.tar.gz
+RUN curl -LO https://get.helm.sh/helm-v2.14.2-linux-amd64.tar.gz \
+    tar zxvf ./helm-v2.14.2-linux-amd64.tar.gz \
+    mv linux-amd64/helm . && chmod +x ./helm \
+    rm -rf ./helm-v2.14.2-linux-amd64.tar.gz \
     rm -rf ./linux-amd64
 
 CMD [ "bash" ]
