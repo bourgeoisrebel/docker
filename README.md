@@ -5,7 +5,7 @@
 - Azure CLI 2.0.66
 - Terraform 0.12.17
 - Az Powershell Module 2.2.0 
-- Helm 2.16.1
+- Helm 3.0.3
 - kubectl 1.17.2
 
 ## Build
@@ -27,4 +27,4 @@ Powershell:
 
 ``` docker run -it -v $PWD:/git bourgeoisrebel/azadmin pwsh ```
 
-**See https://github.com/bourgeoisrebel/docker for centos version. This helps deal with security certs in a proxied environment**
+**Centos version deprecated**
