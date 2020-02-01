@@ -2,6 +2,11 @@ FROM ubuntu
 
 LABEL Name="bourgeoisrebel/azadmin"
 
+ADD ubuntu/Zscaler_Root_CA.crt /usr/local/share/ca-certificates/Zscaler_Root_CA.crt
+RUN chmod 644 /usr/local/share/ca-certificates/Zscaler_Root_CA.crt && \
+  apt-get update && apt-get install -y ca-certificates  &&\
+  update-ca-certificates
+
 RUN cd /tmp && \
     apt update && \
     apt-get install -y wget unzip curl lsb-release gnupg python3-pip python3-minimal
