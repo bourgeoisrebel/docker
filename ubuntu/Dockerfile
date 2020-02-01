@@ -31,7 +31,7 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
     pwsh -Command "Install-Module -Name Az -AllowClobber -Force"
     
 # Install helm/tiller
-RUN HELM_VERSION=v3.0.3 && \
+RUN HELM_VERSION=v2.16.1 && \
     wget https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz --no-check-certificate && \
     helm_sha256=7eebaaa2da4734242bbcdced62cc32ba8c7164a18792c8acdf16c77abffce202 && \
     echo "$helm_sha256 helm-${HELM_VERSION}-linux-amd64.tar.gz" | sha256sum -c - && \
