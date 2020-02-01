@@ -5,7 +5,7 @@
 - Azure CLI 2.0.66
 - Terraform 0.12.17
 - Az Powershell Module 2.2.0 
-- Helm 3.0.3
+- Helm 2.16.1
 - kubectl 1.17.2
 
 ## Build
