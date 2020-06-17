@@ -51,5 +51,5 @@ RUN apt-get update && apt-get install -y apt-transport-https && \
     apt-get install -y kubectl
     
 # Install Hugo framework    
-RUN apt-get update && apt-get install hugo
+RUN apt-get update && apt-get install -y hugo
 CMD [ "bash" ]
