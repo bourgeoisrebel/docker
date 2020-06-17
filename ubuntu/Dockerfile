@@ -11,6 +11,7 @@ RUN cd /tmp && \
     apt update && \
     apt-get install -y wget unzip curl lsb-release gnupg python3-pip python3-minimal
 
+# Install Azure CLI
 RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
     gpg --dearmor | \
     tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null && \
@@ -24,12 +25,13 @@ RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
 RUN wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip --no-check-certificate && \
     unzip ./terraform_0.12.24_linux_amd64.zip -d /usr/local/bin/
 
-RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb --no-check-certificate && \
-    dpkg -i packages-microsoft-prod.deb && \
-    apt update && \
-    apt install -y powershell && \
-    pwsh -Command "Install-Module -Name Az -AllowClobber -Force"
-    
+# Install powershell
+RUN apt-get update && apt-get install -y apt-transport-https && \
+    curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-jessie-prod jessie main" > /etc/apt/sources.list.d/microsoft.list'
+    apt-get update
+    apt-get install -y powershell
+ 
 # Install helm/tiller
 RUN HELM_VERSION=v2.16.1 && \
     wget https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz --no-check-certificate && \
@@ -47,5 +49,6 @@ RUN apt-get update && apt-get install -y apt-transport-https && \
     apt-get update && \
     apt-get install -y kubectl
     
-
+# Install Hugo framework    
+RUN apt-get update && apt-get install hugo
 CMD [ "bash" ]
