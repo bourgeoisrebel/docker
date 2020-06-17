@@ -27,7 +27,7 @@ RUN wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linu
 
 # Install powershell
 RUN apt-get update && apt-get install -y apt-transport-https && \
-    curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && \
+    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-jessie-prod jessie main" > /etc/apt/sources.list.d/microsoft.list'  && \
     apt-get update && \
     apt-get install -y powershell
