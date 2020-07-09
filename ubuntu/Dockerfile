@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
 LABEL Name="bourgeoisrebel/azadmin"
 
@@ -26,13 +26,17 @@ RUN wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linu
     unzip ./terraform_0.12.24_linux_amd64.zip -d /usr/local/bin/
 
 # Install powershell
-RUN for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do rm $apt_file; done && \
-    apt-get update && apt-get install -y apt-transport-https && \
-    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-jessie-prod jessie main" > /etc/apt/sources.list.d/microsoft.list'  && \
-    apt-get update && \
-    apt-get install -y powershell
- 
+# RUN for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do rm $apt_file; done && \
+#     apt-get update && apt-get install -y apt-transport-https && \
+#     curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+#     sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-jessie-prod jessie main" > /etc/apt/sources.list.d/microsoft.list'  && \
+#     apt-get update && \
+#     apt-get install -y powershell
+wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
+dpkg -i packages-microsoft-prod.deb
+apt-get update
+apt-get install -y powershell
+
 # Install helm/tiller
 RUN HELM_VERSION=v2.16.1 && \
     wget https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz --no-check-certificate && \
