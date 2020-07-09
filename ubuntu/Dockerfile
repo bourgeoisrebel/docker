@@ -32,9 +32,9 @@ RUN wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linu
 #     sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-jessie-prod jessie main" > /etc/apt/sources.list.d/microsoft.list'  && \
 #     apt-get update && \
 #     apt-get install -y powershell
-RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb && \
+RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb --no-check-certificate  && \
     dpkg -i packages-microsoft-prod.deb && \
-    apt-get update && \
+    apt-get update && apt-get install -y apt-transport-https ca-certificates  && \
     apt-get install -y powershell
 
 # Install helm/tiller
