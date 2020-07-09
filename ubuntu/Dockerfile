@@ -12,7 +12,8 @@ RUN cd /tmp && \
     apt-get install -y wget unzip curl lsb-release gnupg python3-pip python3-minimal
 
 # Install Azure CLI
-RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
+RUN apt-get update && apt-get install -y apt-transport-https ca-certificates  && \
+    curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
     gpg --dearmor | \
     tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null && \
     AZ_REPO=$(lsb_release -cs) && \
