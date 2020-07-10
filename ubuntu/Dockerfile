@@ -36,7 +36,8 @@ RUN wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linu
 RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb --no-check-certificate  && \
     dpkg -i packages-microsoft-prod.deb && \
     apt-get update && apt-get install -y apt-transport-https ca-certificates  && \
-    apt-get install -y powershell
+    apt-get install -y powershell && \
+    pwsh -command "Install-Module -Name Az -AllowClobber -Force -Confirm:\$false && Import-Module -Name Az"
 
 # Install helm/tiller
 RUN HELM_VERSION=v2.16.1 && \
