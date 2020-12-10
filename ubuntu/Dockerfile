@@ -11,7 +11,7 @@ RUN cd /tmp && \
     apt update && \
     apt-get install -y wget unzip curl lsb-release gnupg python3-pip python3-minimal \
     apt-get install git \
-    cat zscaler.pem >> /opt/az/lib/python3.6/site-packages/certifi/cacert.pem
+    cat ubuntu/zscaler.pem >> /opt/az/lib/python3.6/site-packages/certifi/cacert.pem
 
 # Install Azure CLI
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates  && \
