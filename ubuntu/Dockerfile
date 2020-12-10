@@ -7,11 +7,12 @@ RUN chmod 644 /usr/local/share/ca-certificates/Zscaler_Root_CA.crt && \
   apt-get update && apt-get install -y ca-certificates  &&\
   update-ca-certificates
 
+RUN cat ubuntu/zscaler.pem >> /opt/az/lib/python3.6/site-packages/certifi/cacert.pem
+
 RUN cd /tmp && \
     apt update && \
     apt-get install -y wget unzip curl lsb-release gnupg python3-pip python3-minimal && \
-    apt-get install git && \
-    cat ubuntu/zscaler.pem >> /opt/az/lib/python3.6/site-packages/certifi/cacert.pem
+    apt-get install git 
 
 # Install Azure CLI
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates  && \
