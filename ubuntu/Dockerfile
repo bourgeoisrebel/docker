@@ -7,6 +7,11 @@ RUN chmod 644 /usr/local/share/ca-certificates/Zscaler_Root_CA.crt && \
   apt-get update && apt-get install -y ca-certificates  &&\
   update-ca-certificates
 
+ADD ubuntu/zscaler.pem /usr/local/share/ca-certificates/zscaler.pem
+RUN chmod 644 /usr/local/share/ca-certificates/zscaler.pem && \
+  apt-get update && apt-get install -y ca-certificates  &&\
+  update-ca-certificates
+
 RUN cd /tmp && \
     apt update && \
     apt-get install -y wget unzip curl lsb-release gnupg python3-pip python3-minimal && \
@@ -22,8 +27,9 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates  &&
     tee /etc/apt/sources.list.d/azure-cli.list && \
     apt-get update && \
     apt-get install -y azure-cli && \
-    az extension add --name azure-devops && \
-    cat ubuntu/zscaler.pem >> /opt/az/lib/python3.6/site-packages/certifi/cacert.pem
+    az extension add --name azure-devops
+
+# RUN cat ubuntu/zscaler.pem >> /opt/az/lib/python3.6/site-packages/certifi/cacert.pem
     
 RUN wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip --no-check-certificate && \
     unzip ./terraform_0.12.24_linux_amd64.zip -d /usr/local/bin/
